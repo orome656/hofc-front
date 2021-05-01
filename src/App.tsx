@@ -1,24 +1,19 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import logo from './logo.svg';
 import './App.css';
+import MatchService from './MatchService';
+import { Match } from './models/Match';
+import MatchList from './views/MatchList';
+import Main from './views/Main';
+import Header from './views/Header';
 
 function App() {
+  const [view, setView] = useState("matchs")
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <Header />
+      <Main />
     </div>
   );
 }
