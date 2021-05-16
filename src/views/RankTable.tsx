@@ -15,10 +15,12 @@ function RankTable(props: RankTableProps) {
             if(ranks.get(match.domicile.nom) == null) {
                 ranks.set(match.domicile.nom, new Rank())
                 ranks.get(match.domicile.nom)!.nom = match.domicile.nom
+                ranks.get(match.domicile.nom)!.logo_url = match.domicile.logo_url
             }
             if(ranks.get(match.exterieur.nom) == null) {
                 ranks.set(match.exterieur.nom, new Rank())
                 ranks.get(match.exterieur.nom)!.nom = match.exterieur.nom
+                ranks.get(match.exterieur.nom)!.logo_url = match.exterieur.logo_url
             }
 
             if(match.score_domicile == null || match.score_exterieur == null)
@@ -43,7 +45,7 @@ function RankTable(props: RankTableProps) {
     var ranks = convertMatchsToRanks(props.matchs)
 
     return <ul className="ranksList">
-        <li className="rankItem"><span>#</span><span className="rankTeamName">Nom</span><span>Pts</span><span>Bc</span><span>Bc</span></li>
+        <li className="rankItem"><span>#</span><span></span><span className="rankTeamName">Nom</span><span>Pts</span><span>Bc</span><span>Bc</span></li>
         {ranks.sort((a, b) => b.points - a.points).map((item, index) => <RankTableItem key={index} index={index} rank={item}/>)}
     </ul>
 }

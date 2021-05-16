@@ -20,18 +20,27 @@ function MatchListItem(props: MatchListItemProps) {
 
         return result
     }
-    return <li className="matchItem">
+
+    var computeMatchClassName = function(match: Match, additionnalClass?: string) {
+        var result = additionnalClass == null ? "" : additionnalClass
+        if(match.score_domicile != null) {
+            result += " past"
+        }
+        return result
+    }
+
+    return <div className={computeMatchClassName(item, "matchItem")}>
                 <div className="team">
-                    <img src={item.domicile.logo_url.toString()} />
+                    <img alt="Logo domicile" src={item.domicile.logo_url.toString()} />
                     <span className={computeTeamClassName(item.score_domicile, item.score_exterieur, "name")}>{item.domicile.nom}</span>
                     <span className={computeTeamClassName(item.score_domicile, item.score_exterieur, "score")}>{item.score_domicile}</span>
                 </div>
                 <div className="team">
-                    <img src={item.exterieur.logo_url.toString()} />
+                    <img alt="Logo exterieur" src={item.exterieur.logo_url.toString()} />
                     <span className={computeTeamClassName(item.score_exterieur, item.score_domicile, "name")}>{item.exterieur.nom}</span>
                     <span className={computeTeamClassName(item.score_exterieur, item.score_domicile, "score")}>{item.score_exterieur}</span> 
                 </div>
-            </li>
+            </div>
 }
 
 export default MatchListItem

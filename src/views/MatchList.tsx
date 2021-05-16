@@ -7,9 +7,9 @@ class MatchListProps {
 
 function MatchList(props: MatchListProps) {
 
-    return <ul className="matchsList">
+    return <div className="matchsList">
         {props.matchs.map((item, index) => <MatchListItem key={index} match={item}/>)}
-    </ul>
+    </div>
 }
 
 export default MatchList

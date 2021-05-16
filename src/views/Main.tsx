@@ -4,17 +4,30 @@ import { Match } from "../models/Match";
 import MatchList from "./MatchList";
 import RankTable from "./RankTable";
 
-function Main() {
+class MainProps {
+  currentView: string
+}
+
+function Main(props: MainProps) {
 
   const [matchs, setMatchs] = useState(new Array<Match>())
   useEffect(() => {
-    if (matchs.length == 0)
+    if (matchs.length === 0)
       MatchService.getMatch().then(matchs => setMatchs(matchs))
   })
 
+  var displayView = function(currentView: string) {
+    if(currentView === "classement") {
+      return <RankTable matchs={matchs} />
+    } else if(currentView === "calendrier") {
+      return <MatchList matchs={matchs}/>
+    } else {
+      return <div>404</div>
+    }
+  }
+
     return <div className="main">
-        <RankTable matchs={matchs} />
-        <MatchList matchs={matchs}/>
+        {displayView(props.currentView)}
     </div>
 }
 

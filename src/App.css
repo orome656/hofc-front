@@ -36,3 +36,16 @@
     transform: rotate(360deg);
   }
 }
+.App header a {
+  display: inline-block;
+  width: 50%;
+  padding-top: 1em;
+  padding-bottom: 1em;
+  background-color: lightblue;
+  
+}
+.App header a:hover {
+  background-color: lightcyan;
+  border-bottom: 1px;
+  
+}
