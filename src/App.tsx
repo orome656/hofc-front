@@ -8,7 +8,7 @@ function App() {
 
   return (
     <div className="App">
-      <Header onViewChange={setView} />
+      <Header currentView={view} onViewChange={setView} />
       <Main currentView={view}/>
     </div>
   );

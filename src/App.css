@@ -36,16 +36,24 @@
     transform: rotate(360deg);
   }
 }
+
+.App header {
+  box-shadow: 0px 2px 1px -1px rgba(0,0,0,0.2),0px 1px 1px 0px rgba(0,0,0,0.14),0px 1px 3px 0px rgba(0,0,0,0.12);
+  border-radius: 4px;
+}
+
+
 .App header a {
   display: inline-block;
   width: 50%;
   padding-top: 1em;
   padding-bottom: 1em;
-  background-color: lightblue;
   
 }
-.App header a:hover {
-  background-color: lightcyan;
-  border-bottom: 1px;
+
+
+.App header a.active {
+  color: #1557a0;
+  border-bottom: solid #1557a0;
   
 }
