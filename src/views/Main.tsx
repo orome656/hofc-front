@@ -3,6 +3,8 @@ import MatchService from "../MatchService";
 import { Match } from "../models/Match";
 import MatchList from "./MatchList";
 import RankTable from "./RankTable";
+import { Container } from "@material-ui/core";
+
 
 class MainProps {
   currentView: string

@@ -1,13 +1,38 @@
 import { Match } from '../models/Match'
 import { Rank } from '../models/Rank'
-import RankTableItem from './RankTableItem'
+import { makeStyles } from '@material-ui/core/styles';
+import { DataGrid, GridCellParams } from '@material-ui/data-grid';
+import classes from '*.module.css';
 
 class RankTableProps {
     matchs: Array<Match>
     
 }
+const useStyles = makeStyles({
+    grid: {
+        '& .MuiDataGrid-footer': {
+            display: 'none'
+        }
+    },
+  });
+
+const columns = [
+    { field: 'position', headerName: '#', type: 'number', width: 90 },
+    { 
+        field: 'logo_url', 
+        headerName: '#', 
+        sortable: false, 
+        width: 150, 
+        renderCell: (params: GridCellParams) => (<img alt="Logo club" src={params.value?.toString()} />)
+    },
+    { field: 'nom', headerName: 'Equipe', width: 150 },
+    { field: 'points', headerName: 'Points', type: 'number', width: 100 },
+    { field: 'bp', headerName: 'BP', type: 'number', width: 100 },
+    { field: 'bc', headerName: 'BC', type: 'number', width: 100 }
+  ];
 
 function RankTable(props: RankTableProps) {
+    const classes = useStyles();
     
     var convertMatchsToRanks = function(m: Array<Match>): Array<Rank> {
         var ranks = new Map<String, Rank>()
@@ -39,15 +64,22 @@ function RankTable(props: RankTableProps) {
             ranks.get(match.domicile.nom)!.bp += match.score_exterieur
             ranks.get(match.exterieur.nom)!.bc += match.score_domicile
         }
-        return Array.from(ranks.values())
+        return Array.from(ranks.values()).sort((a, b) => b.points - a.points).map((item, index) => {
+            item.position = index;
+            item.id = index;
+            return item;
+        })
     }
 
     var ranks = convertMatchsToRanks(props.matchs)
 
-    return <ul className="ranksList">
-        <li className="rankItem"><span>#</span><span></span><span className="rankTeamName">Nom</span><span>Pts</span><span>Bc</span><span>Bc</span></li>
-        {ranks.sort((a, b) => b.points - a.points).map((item, index) => <RankTableItem key={index} index={index} rank={item}/>)}
-    </ul>
+    return <DataGrid className={classes.grid} autoHeight 
+                rows={ranks} 
+                columns={columns.map((column) => ({
+                        ...column,
+                        sortable: false,
+                    }))}
+                rowsPerPageOptions={[]} />
 }
 
 export default RankTable

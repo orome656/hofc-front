@@ -1,21 +1,38 @@
+import { makeStyles } from '@material-ui/core/styles';
+import Paper from '@material-ui/core/Paper';
+import Tabs from '@material-ui/core/Tabs';
+import Tab from '@material-ui/core/Tab';
+
 class HeaderProps {
     currentView: string
     onViewChange: Function
 }
 
+
+const useStyles = makeStyles({
+    root: {
+      flexGrow: 1,
+    },
+  });
+
 function Header(props: HeaderProps) {
 
-    var computeLinkClass = function(currentView: string, viewName: string) {
-        if (currentView === viewName) {
-            return "active"
-        }
-        return ""
-    }
-
-    return <header>
-        <a className={computeLinkClass(props.currentView, "classement")} onClick={() => props.onViewChange("classement")}>Classement</a>
-        <a className={computeLinkClass(props.currentView, "calendrier")} onClick={() => props.onViewChange("calendrier")}>Calendrier</a>
-    </header>
+    const classes = useStyles();
+    const handleChange = (event: any, newValue: string) => {
+        props.onViewChange(newValue);
+    };
+    
+    return <Paper className={classes.root}>
+            <Tabs
+                value={props.currentView}
+                onChange={handleChange}
+                indicatorColor="primary"
+                textColor="primary"
+                centered>
+                <Tab label="classement" value="classement"/>
+                <Tab label="calendrier" value="calendrier"/>
+            </Tabs>
+        </Paper>
 }
 
 export default Header
