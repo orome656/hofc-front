@@ -29,6 +29,7 @@ function Header(props: HeaderProps) {
                 indicatorColor="primary"
                 textColor="primary"
                 centered>
+                <Tab label="Actualites" value="actualites"/>
                 <Tab label="classement" value="classement"/>
                 <Tab label="calendrier" value="calendrier"/>
             </Tabs>
