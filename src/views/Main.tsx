@@ -14,16 +14,24 @@ class MainProps {
 }
 
 function Main(props: MainProps) {
-
+  const [isMatchsDownloaded, setIsMatchsDownloaded] = useState(false)
+  const [isActusDownloaded, setIsActusDownloaded] = useState(false)
   const [matchs, setMatchs] = useState(new Array<Match>())
   const [actus, setActus] = useState(new Array<Actu>())
   useEffect(() => {
-    if (matchs.length === 0)
+    if (!isMatchsDownloaded) {
       MatchService.getMatch().then(matchs => setMatchs(matchs))
+      setIsMatchsDownloaded(true)
+    }
+      
+
   })
   useEffect(() => {
-    if (actus.length === 0)
+    if (!isActusDownloaded) {
       ActuService.getActus().then(actus => setActus(actus))
+      setIsActusDownloaded(true)
+    }
+      
   })
 
   var displayView = function(currentView: string) {

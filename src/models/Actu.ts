@@ -4,4 +4,5 @@ export class Actu {
     public titre: string
     public contenu: string
     public image_url: string
+    public image_base64: string
 }

@@ -13,7 +13,7 @@ function ActuList(props: ActuListProps) {
         direction="row"
         justify="center"
         alignItems="center">
-        {props.actus.map((item, index) => <Grid item xs={12} sm={6} md={4} lg={3} ><ActuListItem actu={item}/></Grid>)}
+        {props.actus.map((item, index) => <Grid item key={item.id} xs={12} sm={6} md={4} lg={3} ><ActuListItem actu={item}/></Grid>)}
     </Grid>
 }
 

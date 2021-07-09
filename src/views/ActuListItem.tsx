@@ -30,6 +30,7 @@ export default function ActuListItem(props: ActuListItemProps) {
       <CardActionArea>
         <CardMedia
           className={classes.media}
+          component='img' src={`data:image/png;base64, ${props.actu.image_base64}`}
           image={props.actu.image_url}
           title="Contemplative Reptile"
         />
